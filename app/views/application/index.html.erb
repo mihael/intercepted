@@ -1,0 +1,18 @@
+<script>
+  function callKitch(e) {
+      e.preventDefault()
+      console.log('calling kitsch')
+      const responseDiv = document.getElementById("kitsch-response");
+      fetch('http://kitschmaster.com/')
+           .then((response) => response.text())
+           .then((text) => (responseDiv.innerHTML = text));
+  }
+</script>
+
+<button id="request1">Request1</button>
+<button id="request2">Request2</button>
+<div id="response"></div>
+
+<button id="kitsch" onclick='callKitch(event)'>Request Kitsch</button>
+<div id="kitsch-response"></div>
+
