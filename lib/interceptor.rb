@@ -23,6 +23,8 @@ module Interceptor
         # set mocked body if there's an interception for the url and method
         continue.call(request) do |response|
           puts "intercepted #{url} with: #{interception[:response]}"
+          response.code ||= 200
+          response.headers['Access-Control-Allow-Origin'] = '*'
           response.body = interception[:response]
         end
       elsif allowed_request?(url, method)
